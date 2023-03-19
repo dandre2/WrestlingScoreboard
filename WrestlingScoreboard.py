@@ -2,8 +2,6 @@ wr1 = 0
 wr2 = 0
 roundnum = 0
 
-def period():
-    print(roundnum)
 def quarters():
     print('round number:')
     print(roundnum+1)
