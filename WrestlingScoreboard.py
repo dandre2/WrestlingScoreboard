@@ -2,16 +2,18 @@ wr1 = 0
 wr2 = 0
 roundnum = 0
 
-def quarters():
+def quarters(roundnum):
     print('round number:')
-    print(roundnum+1)
+    roundnum+=1
+    print(roundnum)
     print('red score:')
     print(wr1)
     print('Green score:')
     print(wr2)
     print('--------------')
-    return[roundnum]
-def greenpoints():
+    return roundnum
+
+def greenpoints(wr2):
     print('red score:')
     print(wr1)
     print('green score:')
@@ -21,7 +23,7 @@ def greenpoints():
     print('-----------')
     return [wr2]
 
-def redpoints():
+def redpoints(wr1):
     print('red score:')
     print(wr1+2)     
     print('green score:')
@@ -31,23 +33,21 @@ def redpoints():
     print('----------------')
     return [wr1]
 
-def minus_quarters():
+def minus_quarters(roundnum):
     if roundnum==0:
         roundnum=1
-        roundnum=roundnum-1
         print('round number:')
-    print(roundnum-1)
-    print('red score:')
-    print(wr1)
-    print('Green score:')
-    print(wr2)
-    print('--------------')
-    return[roundnum]
+        print(roundnum-1)
+        print('red score:')
+        print(wr1)
+        print('Green score:')
+        print(wr2)
+        print('--------------')
+        return[roundnum]
     
-def minus_greenpoints():
+def minus_greenpoints(wr2):
     if wr2==0:
-        wr2=wr2+2
-    else:
+        wr2=2    
         print('red score:')
         print(wr1)
         print('green score:')
@@ -57,7 +57,7 @@ def minus_greenpoints():
         print('-----------')
         return [wr2]
 
-def minus_redpoints():
+def minus_redpoints(wr1):
     if wr1==0:
         wr1=wr1+1
     else:    
@@ -72,13 +72,18 @@ def minus_redpoints():
 
 import time
 from tkinter import *
-
 tk=Tk()
-btn=Button(tk,text='2 points red', command=redpoints)
+btn=Button(tk,text='2 points red', command=redpoints(wr1))
 btn.pack()
-btn=Button(tk,text='2 points green', command=greenpoints)
+btn=Button(tk,text='2 points green', command=greenpoints(wr2))
 btn.pack()
-btn=Button(tk,text='Period', command=quarters)
+btn=Button(tk,text='Period', command=quarters(roundnum))
+btn.pack()
+btn=Button(tk,text='minus 2 points red', command=minus_redpoints(wr1))
+btn.pack()
+btn=Button(tk,text='minus 2 points green', command=minus_greenpoints(wr2))
+btn.pack()
+btn=Button(tk,text='minus 1 period', command=minus_quarters(roundnum))
 btn.pack()
 
 while True:
