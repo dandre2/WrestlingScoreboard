@@ -1,92 +1,80 @@
-wr1 = 0
-wr2 = 0
-roundnum = 0
+import tkinter
+import random
 
-def quarters(roundnum):
-    print('round number:')
-    roundnum+=1
-    print(roundnum)
-    print('red score:')
-    print(wr1)
-    print('Green score:')
-    print(wr2)
-    print('--------------')
-    return roundnum
+colours = ['Red','Blue','Green','Pink','Black',
+		'Yellow','Orange','White','Purple','Brown']
+score = 0
 
-def greenpoints(wr2):
-    print('red score:')
-    print(wr1)
-    print('green score:')
-    print(wr2+2)
-    print('round number:')
-    print(roundnum)
-    print('-----------')
-    return [wr2]
+timeleft = 30
 
-def redpoints(wr1):
-    print('red score:')
-    print(wr1+2)     
-    print('green score:')
-    print(wr2)
-    print('round number:')
-    print(roundnum)
-    print('----------------')
-    return [wr1]
+def startGame(event):
+	
+	if timeleft == 30:
+		countdown()
+		
+	nextColour()
 
-def minus_quarters(roundnum):
-    if roundnum==0:
-        roundnum=1
-        print('round number:')
-        print(roundnum-1)
-        print('red score:')
-        print(wr1)
-        print('Green score:')
-        print(wr2)
-        print('--------------')
-        return[roundnum]
+def nextColour():
+
+	global score
+	global timeleft
+
+	if timeleft > 0:
+		e.focus_set()
+		
+		if e.get().lower() == colours[1].lower():
+			
+			score += 1
+
+		e.delete(0, tkinter.END)
+		
+		random.shuffle(colours)
+
+		label.config(fg = str(colours[1]), text = str(colours[0]))
+
+		scoreLabel.config(text = "Score: " + str(score))
+
+def countdown():
+
+	global timeleft
+
+	if timeleft > 0:
+
+		timeleft -= 1
+		
+		timeLabel.config(text = "Time left: "
+							+ str(timeleft))
+								
+		timeLabel.after(1000, countdown)
+
+root = tkinter.Tk()
+
+root.title("COLORGAME")
+
+root.geometry("375x200")
+
+instructions = tkinter.Label(root, text = "Type in the colour"
+						"of the words, and not the word text!",
+									font = ('Helvetica', 12))
+instructions.pack()
     
-def minus_greenpoints(wr2):
-    if wr2==0:
-        wr2=2    
-        print('red score:')
-        print(wr1)
-        print('green score:')
-        print(wr2-2)
-        print('round number:')
-        print(roundnum)
-        print('-----------')
-        return [wr2]
+scoreLabel = tkinter.Label(root, text = "Press enter to start",
+									font = ('Helvetica', 12))
+scoreLabel.pack()
 
-def minus_redpoints(wr1):
-    if wr1==0:
-        wr1=wr1+1
-    else:    
-        print('red score:')
-        print(wr1-2)     
-        print('green score:')
-        print(wr2)
-        print('round number:')
-        print(roundnum)
-        print('----------------')
-        return [wr1]
+timeLabel = tkinter.Label(root, text = "Time left: " +
+			str(timeleft), font = ('Helvetica', 12))
+			
+timeLabel.pack()
 
-import time
-from tkinter import *
-tk=Tk()
-btn=Button(tk,text='2 points red', command=redpoints(wr1))
-btn.pack()
-btn=Button(tk,text='2 points green', command=greenpoints(wr2))
-btn.pack()
-btn=Button(tk,text='Period', command=quarters(roundnum))
-btn.pack()
-btn=Button(tk,text='minus 2 points red', command=minus_redpoints(wr1))
-btn.pack()
-btn=Button(tk,text='minus 2 points green', command=minus_greenpoints(wr2))
-btn.pack()
-btn=Button(tk,text='minus 1 period', command=minus_quarters(roundnum))
-btn.pack()
+label = tkinter.Label(root, font = ('Helvetica', 60))
+label.pack()
 
-while True:
-    tk.update_idletasks()
-    tk.update()
-    time.sleep(0.01)
+e = tkinter.Entry(root)
+
+root.bind('<Return>', startGame)
+e.pack()
+
+e.focus_set()
+
+root.mainloop()
