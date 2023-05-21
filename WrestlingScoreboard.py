@@ -139,13 +139,19 @@ label.pack()
 
 # add a text entry box for
 # typing in colours
-e = tkinter.Entry(root)
+v = tkinter.StringVar(root, value='default text')
+
+e = tkinter.Entry(root, background="green", textvariable= v)
 x = tkinter.Entry(root)
 # run the 'startGame' function
 # when the enter key is pressed
 root.bind('<Return>', startGame)
 e.pack()
 x.pack()
+
+someLabel = tkinter.Label(root, text="SomeLabel",
+                              font=('Helvetica', 12))
+someLabel.pack()
 # set focus on the entry box
 x.focus_set()
 e.focus_set()
