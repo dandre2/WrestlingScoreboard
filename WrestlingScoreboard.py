@@ -75,9 +75,9 @@ def nextColour():
         e.delete(0, tkinter.END)
         x.delete(0, tkinter.END)
 
-        greenscoreLabel.config(text="green Score: " + str(greenscore))
+        greenscoreLabel.config(text="Green Score: " + str(greenscore))
 
-        redscoreLabel.config(text="redscore: " + str(redscore))
+        redscoreLabel.config(text="Red Score: " + str(redscore))
 
 # Countdown timer function
 
@@ -121,7 +121,7 @@ greenscoreLabel = tkinter.Label(root, text="Press enter to start",
                                 font=('Helvetica', 12))
 greenscoreLabel.pack()
 
-redscoreLabel = tkinter.Label(root, text="Press enter to start",
+redscoreLabel = tkinter.Label(root, text="",
                               font=('Helvetica', 12))
 redscoreLabel.pack()
 
