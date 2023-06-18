@@ -7,7 +7,7 @@ scores = ['0', '1', '2', '3', '4',
 time = ['1', '2', '3', '4', '5', '6']
 greenscore = 0
 redscore = 0
-period=0
+period=1
 
 timeleft = 90
 
@@ -18,6 +18,7 @@ def startGame(event):
 
         countdown()
 
+    # think of a better name for this function
     nextColour()
 
 
@@ -28,13 +29,20 @@ def nextColour():
     global timeleft
     global period
 
-    
     if timeleft > 0:
         
+        # what does this d?
         e.focus_set()
         x.focus_set()
         p.focus_set()
 
+        # green score up/down
+        # red score up/down
+        # changeScore(color, increment)
+        # if color = "red":
+        # change red score by increment. if red score - increment <0 , score = 0
+        # if color = "green
+        # change red score by increment. if red score - increment <0 , score = 0
         if e.get().lower() == scores[1]:
 
             greenscore += 1
@@ -79,28 +87,19 @@ def nextColour():
              redscore -= 5    
         if p.get().lower() == scores[1]:
              period +=1
-        if s.get().lower() == scores[1]:
-             timeleft +=1
-        if s.get().lower() == scores[2]:
-             timeleft +=2
-        if s.get().lower() == scores [3]:
-             timeleft +=3                 
-        if s.get().lower() == scores [4]:
-             timeleft +=4
-        if s.get().lower() == scores[5]:
-             timeleft +=5
-        if s.get().lower() == scores[6]:
-             timeleft +=6               
+                      
         e.delete(0, tkinter.END)
         x.delete(0, tkinter.END)
         p.delete(0, tkinter.END)
-        s.delete(0, tkinter.END)
-
+        
         greenscoreLabel.config(text="Green Score: " + str(greenscore))
 
-        redscoreLabel.config(text="Red Score: " + str(redscore) + "Period:" + str(period))
+        redscoreLabel.config(text="Red Score: " + str(redscore) + "\nPeriod:" + str(period))
 
 
+def periodIncrease(period):
+    if p.get().lower() == scores[1]:
+             period +=1
 # Countdown timer function
 
 
@@ -143,7 +142,7 @@ greenscoreLabel = tkinter.Label(root, text="Press enter to start",
                                 font=('Helvetica', 12))
 greenscoreLabel.pack()
 
-redscoreLabel = tkinter.Label(root, text=(period),
+redscoreLabel = tkinter.Label(root, text=('period:' + str(period)),
                               font=('Helvetica', 12))
 redscoreLabel.pack()
 
@@ -163,24 +162,22 @@ label.pack()
 v = tkinter.StringVar(root, value='Green score')
 d= tkinter.StringVar(root, value='red score')
 a= tkinter.StringVar(root, value='period')
-t= tkinter.StringVar(root, value='timeleft')
+
 e = tkinter.Entry(root, textvariable= v)
 x = tkinter.Entry(root, textvariable=d)
 p = tkinter.Entry(root, textvariable=a)
-s = tkinter.Entry(root, textvariable=t)
+
+nextPeriodButton = tkinter.Button(
+    root,
+    text='Go Up 1 Period',
+    command=periodIncrease(period)
+)
+nextPeriodButton.pack()
 # run the 'startGame' function
 # when the enter key is pressed
 root.bind('<Return>', startGame)
 e.pack()
 x.pack()
 p.pack()
-s.pack()
-someLabel = tkinter.Label(root, text="SomeLabel",
-                              font=('Helvetica', 12))
-someLabel.pack()
-# set focus on the entry box
-x.focus_set()
-e.focus_set()
-p.focus_set()
-s.focus_set()
+
 root.mainloop()
