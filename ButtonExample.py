@@ -3,10 +3,8 @@ from tkinter import ttk
 
 
 root = tkinter.Tk()
-big_frame = ttk.Frame(root)
-big_frame.pack(fill='both', expand=True)
 
-label = ttk.Label(big_frame, text='Hello')
+label = ttk.Label(root, text='Hello')
 label.pack()
 
 
@@ -17,6 +15,6 @@ def change_text():
         label['text'] = 'Hello'
 
 
-button = ttk.Button(big_frame, text="Click here", command=change_text)
+button = ttk.Button(root, text="Click here", command=change_text)
 button.pack()
 root.mainloop()
