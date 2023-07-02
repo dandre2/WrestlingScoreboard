@@ -7,7 +7,7 @@ root = tkinter.Tk()
 
 label = ttk.Label(root, text=1)
 label.pack()
-period = ttk.Label(root, text = 1)
+period = ttk.Label(root, text = 0)
 period.pack()
 
 
