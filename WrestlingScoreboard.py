@@ -1,5 +1,8 @@
 import tkinter
 
+# Pausing time
+# starting time again in a new period
+# adding logic to stop time if theres a winner
 
 def nextPeriod():
     period['text'] += 1
