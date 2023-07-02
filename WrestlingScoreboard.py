@@ -4,30 +4,31 @@ import tkinter
 def nextPeriod():
     period['text'] += 1
 
-
 def redScoreTwo():
     redscore['text'] += 2
-
+    redScoreCheck()
 
 def greenScoreTwo():
     greenscore['text'] += 2
-
+    greenScoreCheck()
 
 def redScoreOne():
     redscore['text'] += 1
-
+    redScoreCheck()
 
 def greenScoreOne():
     greenscore['text'] += 1
+    greenScoreCheck()
 
 
 def redScoreThree():
     redscore['text'] += 3
+    redScoreCheck()
 
 
 def GreenScoreThree():
     greenscore['text'] += 3
-
+    greenScoreCheck()
 
 def pinred():
     resultLabel['text']='red wins by pin'
@@ -35,13 +36,13 @@ def pinred():
 def pingreen():
     resultLabel['text']='green wins by pin'    
 
-def scoreCheck(isGreen):
-    if isGreen:
-        if greenscore['text']>=15:
-            resultLabel['text']='green wins by techfall'
-    else:
-        if redscore['text']>=15:
-            resultLabel['text']='red wins by techfall'
+def greenScoreCheck():
+    if greenscore['text']>=15:
+        resultLabel['text']='green wins by techfall'
+
+def redScoreCheck():
+    if redscore['text']>=15:
+        resultLabel['text']='red wins by techfall'
 
 scores = ['0', '1', '2', '3', '4',
           '5', '-5', '-4', '-3', '-2', '-1']
