@@ -1,22 +1,17 @@
-import tkinter
-from tkinter import ttk
+from tkinter import *
 
+win = Tk()
+win.title("Labels in One Line")
+win.geometry("700x350")
 
-root = tkinter.Tk()
-big_frame = ttk.Frame(root)
-big_frame.pack(fill='both', expand=True)
+label1=Label(win, text="Label 1", font=("Times",30,"bold"), bg='red')
+label1.pack(side=LEFT, pady=15)
 
-label = ttk.Label(big_frame, text='Hello')
-label.pack()
+label2=Label(win, text="Label 2", font=("Times",30,"bold"), bg='blue')
+label2.pack(side=LEFT, pady=15)
 
+# label3=Label(win, text="Label 3", font=("Times",30,"bold"), bg='green')
+# label3.pack(side=LEFT, pady=15)
 
-def change_text():
-    if label['text'] == 'Hello':
-        label['text'] = 'World'
-    else:
-        label['text'] = 'Hello'
+win.mainloop()
 
-
-button = ttk.Button(big_frame, text="Click here", command=change_text)
-button.pack()
-root.mainloop()

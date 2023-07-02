@@ -91,15 +91,19 @@ instructions = tkinter.Label(root, text="press enter to start timer",
                              font=('Helvetica', 32))
 instructions.pack()
 
-
+greenLabel = tkinter.Label(root, text="Green Score")
+greenLabel.pack()
 greenscore = tkinter.Label(root, text=0)
 greenscore.pack()
 
+redLabel = tkinter.Label(root, text="Red Score")
+redLabel.pack()
 redscore = tkinter.Label(root,text= 0)
 redscore.pack()
 
 
-
+periodLabel = tkinter.Label(root, text="Period")
+periodLabel.pack()
 period = tkinter.Label(root, text =1)
 period.pack()
 
@@ -156,12 +160,12 @@ redOnePointsButton.pack()
 
 
 greenThreePointsButton = tkinter.Button(root, text="three points green", command= GreenScoreThree)
-greenThreePointsButton.pack
+greenThreePointsButton.pack()
 
 
 
 redThreePointsButton = tkinter.Button(root, text="three points red", command= redScoreThree)
-redThreePointsButton.pack
+redThreePointsButton.pack()
 
 
 
