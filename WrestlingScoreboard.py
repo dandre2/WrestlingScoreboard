@@ -1,10 +1,11 @@
 import tkinter
-
+import time
 # Pausing time
 # starting time again in a new period
 # adding logic to stop time if theres a winner
 
 def nextPeriod():
+    overtime1()
     period['text'] += 1
 
 def redScoreTwo():
@@ -28,6 +29,8 @@ def redScoreThree():
     redscore['text'] += 3
     redScoreCheck()
 
+def RedOt1win():
+    resultLabel['text']='red wins ot1'
 
 def GreenScoreThree():
     greenscore['text'] += 3
@@ -38,6 +41,10 @@ def pinred():
 
 def pingreen():
     resultLabel['text']='green wins by pin'    
+    
+def overtime1():
+    if period['text']==3:
+        overtimeLabel['text']='first overtime, first takedown wins.'    
 
 def greenScoreCheck():
     if greenscore['text']>=15:
@@ -47,18 +54,19 @@ def redScoreCheck():
     if redscore['text']>=15:
         resultLabel['text']='red wins by techfall'
 
+
 scores = ['0', '1', '2', '3', '4',
           '5', '-5', '-4', '-3', '-2', '-1']
-time = ['1', '2', '3', '4', '5', '6']
+
 
 timeleft = 90
 
 
 def startGame(event):
     if timeleft == 90:
-        countdown()
+        #countdown()
 
-    nextColour()
+        nextColour()
 
 
 def nextColour():
@@ -70,17 +78,30 @@ def nextColour():
         pass
 
 
+
+  
+
+
 def countdown():
     global timeleft
 
     if timeleft > 0:
         timeleft -= 1
-
+        
         timeLabel.config(text="Time left: "
                               + str(timeleft))
 
         timeLabel.after(1000, countdown)
+def StopClock():
+    global time
+    if countdown ==False:    
+        time.sleep()
+    elif countdown ==True:
+        pass
+     
+        
 
+        
 
 root = tkinter.Tk()
 
@@ -114,6 +135,8 @@ timeLabel.pack()
 
 resultLabel = tkinter.Label(root, text="empty")
 resultLabel.pack()
+overtimeLabel = tkinter.Label(root, text="no overtime")
+overtimeLabel.pack()
 
 GreenTwoPointsButton = tkinter.Button(root, text="Two points green", command=greenScoreTwo)
 GreenTwoPointsButton.pack()
@@ -138,6 +161,15 @@ redpinButton.pack()
 
 greenpinButton = tkinter.Button(root, text="green pin", command=pingreen)
 greenpinButton.pack()
+
+RedWinsOvertime1= tkinter.Button(root, text="red wins Ot1", command=RedOt1win)
+RedWinsOvertime1.pack()
+
+startclockbutton= tkinter.Button(root, text="start clock", command=countdown)
+startclockbutton.pack()
+
+StopClockbutton= tkinter.Button(root, text="to stop clock", command=StopClock)
+StopClockbutton.pack()
 
 NextPeriodButton = tkinter.Button(root, text="Next Period", command=nextPeriod)
 NextPeriodButton.pack()
