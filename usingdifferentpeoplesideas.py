@@ -11,6 +11,8 @@ class App(tk.Tk):
         self.label.pack()
         self.button = tk.Button(self, text='Start', width=50, command=self.start_stop)
         self.button.pack()
+        self.resetButton = tk.Button(self, text = 'Reset', width= 50, command = self.reset_counter)
+        self.resetButton.pack()
 
     def count(self):
         if self.active_counter:
@@ -26,6 +28,12 @@ class App(tk.Tk):
         else:
             self.active_counter = False
             self.button.config(text="Start")
+
+    def reset_counter(self):
+        self.active_counter = False
+        self.button.config(text="Start")
+        self.counter = 90
+        self.label.config(text=self.counter)
 
 
 if __name__ == "__main__":
