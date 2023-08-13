@@ -37,6 +37,12 @@ def GreenScoreThree():
         greenscore['text'] += 3
         greenScoreCheck()
 
+def RedPenalty():
+       Rp['text']+=1
+       redPenaltyCheck1()
+def GreenPenalty():
+       Gp['text']+=1
+       GreenPenaltyCheck1()
 def pinred():
         resultLabel['text']='red wins by pin'
 
@@ -54,8 +60,38 @@ def greenScoreCheck():
 def redScoreCheck():
         if redscore['text']>=15:
             resultLabel['text']='red wins by techfall'
-
-
+def redPenaltyCheck1():       
+        if Rp['text']>=3:
+               redscore+=1
+               
+               redPenaltyCheck2()
+               redPenaltyCheck3()
+               redPenaltyCheck4()
+def redPenaltyCheck2():       
+        if Rp['text']>=4:
+               greenscore+=2
+def redPenaltyCheck3():       
+        if Rp['text']>=5:
+               greenscore+=3
+def redPenaltyCheck4():       
+        if Rp['text']>=6:
+                resultLabel['text']='green wins by disqualification'
+def GreenPenaltyCheck1():       
+        if Gp['text']>=3:
+               greenscore+=1
+       
+        GreenPenaltyCheck2()
+        GreenPenaltyCheck3()
+        GreenPenaltyCheck4()       
+def GreenPenaltyCheck2():       
+        if Rp['text']>=4:
+               greenscore+=2
+def GreenPenaltyCheck3():       
+        if Rp['text']>=5:
+               greenscore+=3
+def GreenPenaltyCheck4():       
+        if Rp['text']>=6:
+                resultLabel['text']='green wins by disqualification'                                                             
 scores = ['0', '1', '2', '3', '4',
             '5', '-5', '-4', '-3', '-2', '-1']
 
@@ -79,38 +115,11 @@ def nextColour():
             pass
 
 
-# class App(tkinter.Tk):
-#         def __init__(self):
-#             super().__init__()
-#             self.title("Counting Seconds")
-#             self.counter = 90
-#             self.active_counter = False
-#             self.label = tkinter.Label(self, fg="black")
-#             self.label.pack()
-#             self.button = tkinter.Button(self, text='Start', width=50, command=self.start_stop)
-#             self.button.pack()
-
-        def count(self):
-            if self.active_counter:
-                self.counter -= 1
-                self.label.config(text=self.counter)
-                self.label.after(1000, self.count)
-
-        def start_stop(self):
-            if self.button['text'] == 'Start':
-                self.active_counter = True
-                self.count()
-                self.button.config(text="Stop")
-            else:
-                self.active_counter = False
-                self.button.config(text="Start")
-
-
             
 
 root = tkinter.Tk()
 
-root.title("COLORGAME")
+root.title("Wrestling Scoreboard")
 
 root.geometry("500x800")
 
@@ -124,27 +133,49 @@ redLabel = tkinter.Label(root, text="Red Score")
 redLabel.pack()
 redscore = tkinter.Label(root, text=0)
 redscore.pack()
-
+print("redscore label" , redscore['text'])
+print("redscore label" , redscore['text']+1)
+redscore['text']+=1
+print("redscore label" , redscore['text'])
 periodLabel = tkinter.Label(root, text="Period")
 periodLabel.pack()
 period = tkinter.Label(root, text=1)
 period.pack()
 
-    
+RedPenalties = tkinter.Label(root, text="red penalty")
+RedPenalties.pack()
+Rp = tkinter.Label(root, text=0)  
+Rp.pack()
 
 
+GreenPenalties = tkinter.Label(root, text="green penalty")
+GreenPenalties.pack()
+Gp = tkinter.Label(root, text=0)  
+Gp.pack()
 
-def start_stop(self):
-            if button['text'] == 'Start':
+def start_stop():
+        #button = tkinter.Button(root, text='Start', width=50, command=start_stop())
+        #button.pack()
+        global active_counter
+        if button['text'] == 'Start':
                 active_counter = True
                 count()
                 button.config(text="Stop")
-            else:
+        else:
                 active_counter = False
                 button.config(text="Start")
 
-print("Counting Seconds")
+def count():
+            global counter
+            if active_counter:
+                counter -= 1
+                label.config(text='time')
+                label.config(text=counter)
+                label.after(1000, count)
 
+print("Counting Seconds")
+global counter
+global active_counter
 counter = 90
 active_counter = False
 label = tkinter.Label(root, fg="black")
@@ -152,11 +183,7 @@ label.pack()
 button = tkinter.Button(root, text='Start', width=50, command=start_stop)
 button.pack()
 
-def count(self):
-    if active_counter:
-        counter -= 1
-        label.config(text=counter)
-        label.after(1000,count)
+
 
 resultLabel = tkinter.Label(root, text="empty")
 resultLabel.pack()
@@ -190,8 +217,11 @@ greenpinButton.pack()
 RedWinsOvertime1= tkinter.Button(root, text="red wins Ot1", command=RedOt1win)
 RedWinsOvertime1.pack()
 
+RPbutton= tkinter.Button(root, text="red penalties", command=RedPenalty)
+RPbutton.pack()
 
-
+GPbutton= tkinter.Button(root, text="Green penalties", command=GreenPenalty)
+GPbutton.pack()
     # StopClockbutton= tkinter.Button(root, text="to stop clock", command)
     # StopClockbutton.pack()
 
@@ -201,4 +231,3 @@ if __name__ == "__main__":
         # root.bind(App().mainloop())
         root.bind('<Return>', startGame)
         root.mainloop()
-        
